@@ -65,7 +65,105 @@
         let message = 'hello';
         console.log(message);   // local variable
         console.log(globalMessage);
+        function printAnother() {
+            console.log(message);
+            let childMessage = 'hello';
+        }
+        // console.log(childMessage);   // error
+        return undefined;   // 기본적인 설정, 생략된 것 
     }
-
     printMessage(); 
     // console.log(message);   // 밖에서 부르면 오류!
+
+// 6. Return a value
+    function sum(a, b) {
+        return a + b;
+    }
+    const result = sum(1, 2);   // 3
+    console.log(`sum: ${sum(1, 2)}`);
+
+
+// 7. Early return, early exit
+    // bad
+    function upgradeUser(user) {
+        if (user.point <= 10) {
+            return;
+        }
+        // long upgrade logic...
+        // 필요한 로직 작성
+    }
+        // 블록 안에 많은 것들은 쓰는 것은 가독성에 안좋다
+        // 조건이 맞지 않을 때 리턴 -> 조건이 맞을 때 로직 작성 순으로 쓰는 게 좋다 
+
+
+
+// First-class function
+// functions are treated like any other variable
+// can be assigned as a value to variable    할당이 가능 
+// can be passed as an argument to other functions.     매개변수 parameters 로 전달 가능
+// can be returned by another function      리턴 값으로도 리턴이 된다 
+
+// 1. Function expression
+    // a function declaration can be called earlier than it is defined. (hoisted)
+    // a function expression is created when the execution reaches it.
+    // 선언 되기 이전에 함수를 불러올 수 있다 -> JS 가 함수의 선언 부분을 제일 위로 끌어올리기 때문
+    const print = function() {      // anonymous function 익명 함수 
+        console.log('print');       // named function 이름이 있는 함수 
+    }
+    print();
+    const printAgain = print;
+    printAgain();
+    const sumAgain = sum;
+    console.log(sumAgain(1, 3));
+
+
+// 2. Callback function using function expression   콜백 현상
+    // functions 을 parameters 로 불러서 상황에 따라 호출하는 것 
+    function randomQuiz(answer, printYes, printNo) {
+        if (answer === 'love you') {
+            printYes();
+        } else {
+            printNo();
+        }
+    }
+    const printYes = function() {
+        console.log('Yes!');
+    }
+
+    // named function
+    // better debugging in debugger's stack traces
+    // recursions   반복 되풀이, 귀납식
+    const printNo = function print() {
+        console.log('No!');
+        // print();      // recursion : 함수 안에서 스스로 혹은 함수를 부르는 것
+                         // 이렇게 하면 무한으로 반복 -> call stack 꽉찼다고 에러
+    }
+    randomQuiz('wrong', printYes, printNo);
+    randomQuiz('love you', printYes, printNo);
+
+
+// Arrow function
+    // always anonymous
+    // const simplePrint = function() {
+    //     console.log('simplePrint!');
+    // }
+    
+    const simplePrint = () => console.log('simple Print!');
+            // 이렇게 간단하게 만들 수 있다
+
+    // const add = function(a, b) {
+    //     return a + b;
+    // }
+    const add = (a, b) => a + b;        // 간결하게 쓰기 
+    const simpleMultiply = (a, b) => {
+        // do something more    한줄 이상이라면 블록{} 도 쓸 수 있다 
+        return a * b;
+    }
+
+
+// IIFE: Immediately Invoked Function Expression
+    // 함수 자체를 () 로 묶고 () 도 써주면 선언과 동시에 실행이 된다 
+    // (function {})();    이런식으로 
+    (function hello() {
+        console.log('IIFE');
+    })();   
