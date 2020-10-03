@@ -1,5 +1,7 @@
 // new Object
+// 별로 권장 되지 않는다 
 // new Object 로 만들어진 변수는 객체로 변한다 ( a -> 객체)
+
 const a = new Object();
 console.log(a, typeof a);
                 // {} object  가 출력 
