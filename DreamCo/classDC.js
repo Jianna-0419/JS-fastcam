@@ -88,6 +88,7 @@
     const araticle2 = new Article(2);
     console.log(article1.publisher);    // undefined
         // object 마다 있는 것이 아니라 class 에만 있기 때문에 오류 
+        
     console.log(Article.publisher); 
     Article.printPublisher();
                 
