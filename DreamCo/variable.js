@@ -4,7 +4,7 @@
     // use this for Valina Javascript
 'use strict';
 
-// 2. Varaible
+// 2. Varaible, re(read/write)
     // let (added in ES 6) -> JS 에서 '변수' 선언하는 단 한가지 방법
     let globalName = 'global name';
 

@@ -1,6 +1,6 @@
 'use strict';
 
-// 1. String concatenation
+// 1. String concatenation(연속)
     console.log('my' + 'cat');
     console.log('1'+ 2);
     console.log(`string literals: 
@@ -26,6 +26,7 @@
     console.log(`preIncrement: ${preIncrement}, counter: ${counter}`);  // 3 3
         // counter = counter  1;    이 식과 동일 
         // preIncrement = counter;
+        
     const postIncrement = counter++;
     console.log(`preIncrement: ${preIncrement}, counter: ${counter}`);  // 3, 4
         // postIncrement = counter;
