@@ -1,6 +1,6 @@
 // async & await
 // clear style of using promise :)
-
+// 비동기적인 작업을 좀 더 동기적이고 간결 간편하게 만들어 주는 것 
 
 // 1. async     / 
 // async function => 함수를 Promise 로 변환해준다 
