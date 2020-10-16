@@ -24,21 +24,21 @@
 // 3. Looping over an array
     // print all fruits
     // a. for 
-    for (let i = 0; i < fruits.length; i++) {
-        console.log(fruits[i]);
-    }
+        for (let i = 0; i < fruits.length; i++) {
+            console.log(fruits[i]);
+        }
 
     // b. for of
-    for (let fruit of fruits) {
-        console.log(fruit);
-    }
+        for (let fruit of fruits) {
+            console.log(fruit);
+        }
 
     // c. forEach
     // callbackfn: (value: t, index: number, array: t[]) -> 이렇게 3가지가 있다 
-    console.log('------c of 3------');
-    fruits.forEach((fruit) => console.log(fruit));
-        // 보통은 array 는 가져오지 않는다 
-        // 익명 함수는 Arrow 함수 쓸 수 있다, 한 줄이면 {} 도 생략 
+        console.log('------c of 3------');
+        fruits.forEach((fruit) => console.log(fruit));
+            // 보통은 array 는 가져오지 않는다 
+            // 익명 함수는 Arrow 함수 쓸 수 있다, 한 줄이면 {} 도 생략 
 
 // 4. Addition, deletion, copy
     // push: add an item to the end
