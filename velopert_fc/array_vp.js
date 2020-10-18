@@ -27,3 +27,28 @@ console.log('array 벨로퍼트 연결 확인!');
 
 // length  = 배열의 길이 (안에 몇개가 들어있는지)
    console.log(objects.length);       // 3
+
+
+
+console.clear();
+
+
+
+// forEach  =  배열 안의 원소들을 일괄적으로 작업하고 싶을 때 사용 
+    const superheroes = [
+        '아이언맨',
+        '캠틴 아메리카',
+        '토르',
+        '닥터 스트레인지'
+    ]
+
+    for (let i = 0; i < superheroes.length; i++) {
+        console.log(superheroes[i]);
+    }
+
+    console.log('------------------');
+
+    superheroes.forEach((hero) => {
+        console.log(hero);
+    });
+            // 이렇게 간단하게 만들 수 있다
