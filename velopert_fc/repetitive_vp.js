@@ -112,3 +112,65 @@ console.log('반복문 velopert 확인!');
         // 각각의 key value 들이 배열 형태로 배열에 들어감
         // [Array(2), Array(2), Array(3)]       
         // ['name': '멍멍이'], ['sound' : '왈와왈']     요렇게 
+
+    console.clear();
+
+// break & continue     다른 조건문에서도 쓸 수 있다
+
+    // continue  =  조건이 맞으면 뛰어넘고 다음꺼 !!
+    // break  =  조건이 맞으면 멈춰!  다음은 없다!
+
+    for (let j = 0; j < 10; j++) {
+        if (j === 2)  continue;          // 실행 블록이 한줄이면 {} 생략가능
+        console.log(j);
+
+        if (j === 5) break;             // break 5에서 끝
+    }
+
+
+    console.clear();
+
+
+
+
+/*
+    Quiz ~~~~~~ !!!
+
+    function sumOf 라는 함수 만들기 
+    parameter 로 배열을 가지고오기 (numbers)
+    배열 안에 있는 모든 값들의 합을 리턴하는 함수
+*/
+
+    function sumOf(numbers) {
+        let sum = 0;
+        for (let i = 0; i <numbers.length; i++) {
+            sum += numbers[i];
+        }
+        return sum;
+    }
+
+    const result = sumOf([1,2,3,4,5]);
+    console.log(result);
+
+
+
+/*
+    Quiz!!
+
+    3 보다 큰 숫자들로만 이루어진 배열 리턴
+*/
+
+console.clear();
+
+    function biggerThanThree(numbers) {
+        const array = [];
+        for (let i = 0; i < numbers.length; i++) {
+            if (numbers[i] > 3) {
+                array.push(numbers[i]);
+            }
+        }
+        return array;           // 함수 제일 마지막에는 반드시 리턴을 시켜줘야한다 
+    }
+
+    const items = [1, 2, 3, 4, 5, 6, 7];
+    console.log(biggerThanThree(items));
