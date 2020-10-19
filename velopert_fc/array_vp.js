@@ -212,56 +212,63 @@ console.log('array 벨로퍼트 연결 확인!');
             console.log(array5.join('|'));      // 1,2,3,4,5 출력  =>  '1,2,3,4,5' 처럼
             console.log(array5.join(', '));      
 
-    // reduce
+    // reduce 함수
         // 주어진 배열 안에 있는 모든 값들을 사용하여 어떤 값을 연산할 때 사용
         // 다양한 곳에 유용하게 사용된다 
 
-        // 1번째 parameter  =  값을 계산하는 함수
-            // 함수 안의 1번째 인자  =  누적된 값
-            // 2번째 인자   =  current 현재 값 (혹은 더해질 값...?)
-        // 2번째  =  기본값
+        // 1번째 parameter  =  accumulator 과 current를 파라미터로 가져와서 결과를 가져오는 콜백함수
+            // accumulator = 누적되는 값
+            // current = 현재 원소 값
+
+        // 2번째 parameter =  기본값
+
+        // 원리!
+            // 처음 콜백 함수가 호출되면 초기값부터 시작해서 current를 가지고  안에 있는 실행문이 실행되고
+            // 그 결과값이 accumulator 로 설정된 다음
+            // 다음 current 를 호출해서 다시 콜백함수 실행 ... 모든 원소가 실행된 다음 끝난다
 
             const numbers4 = [1, 2, 3, 4, 5];
 
-            // 모든 원소들의 값을 다 더한 값을 구한다고 치면!
-            const sum = numbers4.reduce(
-                (accumulator, current, index, array) => accumulator + current, 0
-            );
-            console.log(sum);
-                // 작동 원리 설명 (코드 설명)
-                // accumulator = 누적된 값
-                // 기본값 0 이 처음 accumulator 가 되고 current 는 1이 들어온다
-                // 그래서 0 + 1 의 값인 1이 그 다음 accumulator 가 되고
-                // 다음 값인 2가 current 로 들어가면서 반복된다 
+            // 모든 원소의 합 구하기
+                const sum = numbers4.reduce(
+                    (accumulator, current, index, array) => accumulator + current, 0
+                );
+                console.log(sum);
+                // 설명
+                    // accumulator = 누적된 값
+                    // 기본값 0 이 처음 accumulator 가 되고 current 는 1이 들어온다
+                    // 그래서 0 + 1 의 값인 1이 그 다음 accumulator 가 되고
+                    // 다음 값인 2가 current 로 들어가면서 반복된다 
 
 
-            const avg = numbers4.reduce((accumulator, current, index, array) => {
-                if (index === array.length - 1) {
-                    return (accumulator + current) / array.length;
-                }
-                return accumulator + current;
-            }, 0);
+            // 모든 원소 값의 평균을 구하기
+                const avg = numbers4.reduce((accumulator, current, index, array) => {
+                    if (index === array.length - 1) {
+                        return (accumulator + current) / array.length;
+                    }
+                    return accumulator + current;
+                }, 0);
 
-            console.log(avg);       // 3 출력
+                console.log(avg);       // 3 출력
 
                 // 설명
                     // 일단 위에 sum 처럼 index 가 4가 되기 전까지는 그냥 누적된다
                     // 누적됐다가 index === array.length - 1, 즉 5 - 1  = 4가 되면
                     // 원래처럼 더하는 거 대신 더한 다음에 array.length 로 나눈 값이 리턴 된다!
 
-        // reduce 의 다른 예시
-            const alphabets = ['a', 'a', 'b', 'c' ,'c', 'd', 'e'];
+            // 해당 원소가 몇개 들어있는 지 구하기
+                const alphabets = ['a', 'a', 'b', 'c' ,'c', 'd', 'e'];
 
-            const counts = alphabets.reduce((acc, current) => {
-                if (acc[current]) {
-                    acc[current] += 1;
-                } else {
-                    acc[current] = 1;
-                }
-                return acc;
-            }, {});
+                const counts = alphabets.reduce((acc, current) => {
+                    if (acc[current]) {
+                        acc[current] += 1;
+                    } else {
+                        acc[current] = 1;
+                    }
+                    return acc;
+                }, {});
 
-            console.log(counts);
+                console.log(counts);
 
                 // 설명 !
                     // acc[current] = acc['a'] = acc.a 라는 의미 
@@ -276,20 +283,21 @@ console.log('array 벨로퍼트 연결 확인!');
 
 /*
     Quiz ~~~
+
     숫자 배열이 주어졌을 때 10보다 큰 숫자의 갯수를 반환하는 함수를 만들어라!
 */
 
-console.clear();
+    console.clear();
 
-    function countBiggerThanTen(numbers) {
-        let howMany = 0;
-        numbers.forEach(n => {
-            if (n > 10) {
-                howMany++;
-            }
-        });
-        return howMany;
-    }
+        function countBiggerThanTen(numbers) {
+            let howMany = 0;
+            numbers.forEach(n => {
+                if (n > 10) {
+                    howMany++;
+                }
+            });
+            return howMany;
+        }
 
-    const count = countBiggerThanTen([1, 2, 3, 5, 10, 20, 30, 40, 50, 60]);
-    console.log(count);     // 5 가 출력
+        const count = countBiggerThanTen([1, 2, 3, 5, 10, 20, 30, 40, 50, 60]);
+        console.log(count);     // 5 가 출력
