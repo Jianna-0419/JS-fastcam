@@ -12,7 +12,7 @@
     console.log(fruits);
     console.log(fruits.length);
     console.log(fruits[0]);     // 🍎 출력 
-                                //배열은 적은 index 에 해당하는 value 를 받아올 수 있다 
+                                //배열은 index 에 해당하는 value 를 받아올 수 있다 
     console.log(fruits[1]);     // 🥑 출력 
     console.log(fruits[2]);     // undefined 안나온다 
     console.log(fruits[fruits.length - 1]);     // 🥑 출력 
@@ -111,7 +111,8 @@
 /*
     요약
 
-    배열 선언 => 1. new Array();   2. ['1', '2', '3']
+    배열 선언 
+        => 1. new Array();  /  2. ['1', '2', '3']
 
     index : 0부터 시작 
         - .length : 배열 길이
