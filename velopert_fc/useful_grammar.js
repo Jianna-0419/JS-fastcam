@@ -66,7 +66,7 @@
                 // value2 가 truthy한 값이면 false 로 바꿧다가 truthy 가 아닌 true 로 바꾸기 
         console.log(truthy);
         
-console.log('-----end of 삼항 연산자-----');
+    console.log('-----end of 삼항 연산자-----');
 
 // 단축 평가 논리 계산법  Short-circuit evaluation
     true && true    // true
@@ -150,13 +150,221 @@ console.log('-----end of 삼항 연산자-----');
 
 // 함수의 기본 파라미터 parameter
     // parameter 을 전달하지 않았을 때 기본값으로 설정해놓는 파라밑터를 말한다
-
-        function calculateCircleArea(r) {
-            const radius = r || 1;          
-                // r 값이 주어지지 않았다면(앞에 값 = falsy) 1 을 쓴다 (뒤에 값)
-            return Math.PI * radius * radius;
+    // parameter = default 값  => 이렇게 쓸 수 
+    // 화살표 함수에서도 적용가능
+    
+    console.log('----------연산자----------');
+        function calculateCircleArea(r = 1) {
+                    // const radius = r || 1;          
+                    // r 값이 주어지지 않았다면(앞에 값 = falsy) 1 을 쓴다 (뒤에 값)
+            return Math.PI * r * r;
         }
 
+        /*
+            화살표 함수로 표현
+
+            const calculateeCircleArea = (r = 1) => Math.PI * r * r;
+        
+        */
         console.log(calculateCircleArea(5));
 
         console.log(calculateCircleArea());     // 기본값이 없다면 안넣어준다면 NaN 출력
+
+
+
+// 조건문 더 스마트하게 쓰기!
+    // 좀 더 간결하고 읽기 쉬운 코드가 좋은 코드!!   (짧다고 다 좋은게 아님)
+
+    console.log('----------조건문1----------');
+        
+        // 값의 존재 여부에 따라 true false 출력되는 코드 예시
+
+            // 그냥 기본으로 쓰기
+                function isAnimal(text) {
+                    return (
+                        text === '고양이' || text === '개' || text === '거북이'
+                    );
+                }
+
+                console.log(isAnimal('개'));
+                console.log(isAnimal('노트북'));
+                // 하지만 이렇게 쓰는 것보다 배열로 해서 쓰는게 낫다 (아래 함수처럼)
+            
+
+            // 배열로 쓰기  => 간단해짐
+                function isAnimal2(text) {
+                    const animals = ['고양이', '개', '거북이', '너구리'];
+                    return animals.includes(text);
+                            // 값이 존재하면 true, 없으면 false
+                }
+
+                console.log(isAnimal2('개'));
+                console.log(isAnimal2('핸드폰'));
+
+
+            // 화살표 함수로 작성
+                const isAnimal3 = text => ['고양이', '개', '거북이', '너구리'].includes(text);
+
+                console.log(isAnimal3('거북이'));
+        
+
+        console.log('----------조건문2----------');
+        // 값에 따라서 출력되는 메시지가 다른 코드 예시
+        
+            // 그냥 if 반복으로 작성
+                // 하지만 너무 복잡, 쓸게 많음
+
+                function getSound(animal) {
+                    if (animal === '개') return '멍멍!';
+                    if (animal === '고양이') return '야옹~';
+                    if (animal === '참새') return '짹짹!';
+                    if (animal === '비둘기') return '구구 구구';
+                    return '... 정체가 모냐?'; 
+                }
+
+                console.log(getSound('고양이'));
+                console.log(getSound('비둘기'));
+                console.log(getSound('인간')); 
+    
+            
+            // switch 이용
+                // 여전히 보기 어려움, if 가 나을수도...
+
+                function getSound2(animal) {
+                    switch (animal) {
+                        case '개': 
+                            return '멍멍!';
+                        case '고양이': 
+                            return '야옹~';
+                        case '참새': 
+                            return '짹짹!';
+                        case '비둘기': 
+                            return '구구 구구';
+                        default:
+                            return '...?';
+                    }
+                }
+
+                console.log(getSound2('참새'));
+                console.log(getSound2('인간'));
+
+            
+            // 객체를 활용해서 작성
+                // 조건에 따라 다른 값을 변환해야한다면 객체를 활용하면 좋다!
+
+                // 아주 좋은 활용!
+                function getSound3(animal) {
+                    const sounds = {
+                        개: '멍멍!',
+                        고양이: '야옹',
+                        참새: '짹짹',
+                        비둘기: '구구구구구구구'
+                    };
+
+                    return sounds[animal] || '...?!?!';
+                            // sounds[animal] => sounds 객체 안의 key 들을 조회해서 
+                            // 해당되는 value 리턴
+                }
+
+            
+            // 객체 안의 함수를 넣을 경우
+                
+                function makeSound(animal) {
+                    const tasks = {
+                        개: () => {
+                            console.log('멍멍멍!');
+                        },
+                        고양이() {
+                            console.log('야옹오옹~');
+                        },
+
+                        // 비둘기처럼 쓰기보다는 개나 고양이처럼 쓰는게 낫다
+                        비둘기: function() {
+                            console.log('구구구구 구');
+                        }
+                    }
+
+                    const task = tasks[animal];
+                    if (!task) {
+                        console.log('..누구냐?');
+                        return;
+                    }
+                    task();
+                }
+
+                makeSound('개');
+                makeSound('고양이');
+
+
+    console.clear();
+
+
+// 비구조화 할당 (구조 분해)
+    // 객체의 비구조 할당
+        const object2 = { a: 1, b: 2};
+        const { a, b } = object2;
+        
+        console.log(a);     // 1 출력
+        console.log(b);     // 2 출력 
+
+        // 함수의 parameter 에도 가능
+            // 기본값도 설정 가능
+                // const object3 = {c: 1};
+
+                // function print({c, d =2}) {
+                //     console.log(c);
+                //     console.log(d);
+                // }
+
+                // print(object3);
+
+
+        // 새로운 이름을 지어서 밖으로 꺼낼 수도 있다
+            const animal2 = {
+                name: '멍멍이',
+                type: '개'
+            };
+
+            const {name: nickname} = animal2;
+
+            console.log(nickname);
+            console.log(animal2);       // animal2 안은 변화가 없다
+
+
+    // 배열의 비구조 할당
+
+        const array2 = [10, 20];
+        const [one, two] = array2;
+
+        // 기본값도 할당 가능
+        const array3 = [30];
+        const [three, four = 40] = array3;
+
+        console.log(one);
+        console.log(two);
+        console.log(three);
+        console.log(four);
+
+    
+
+    // 객체 깊숙하게 있는 애들 꺼내기
+        const deepObject = {
+            state: {
+                information: {
+                    name: 'Jianna',
+                    languages: ['korean', 'english', 'chinese']
+                }
+            },
+
+            value: 5
+        };
+
+        const {name5, languages} = deepObject.state.information;
+        const { value3 } = deepObject;
+
+        const extracted = {
+            name = name5,
+            languages,
+            value = value5
+        };
+        console.log(extracted);
