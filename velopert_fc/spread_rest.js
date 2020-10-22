@@ -55,7 +55,7 @@ console.log('spread and rest 연결 확인!');
 
             console.log(spreadNumbers);
 
-
+        console.log('----------rest---------');
 
     // rest
         // object, array , function parameter 에 사용 가능하다
@@ -64,3 +64,33 @@ console.log('spread and rest 연결 확인!');
         const { color, ...rest} = purpleCuteSlime;
         console.log(color);
         console.log(rest);      // rest 를 제외한 값들이 Object 로 출력된다
+                                // {name: '슬라임', attribute: 'cute'} 만 출력
+
+
+        //함수 parameter 에서의 rest
+            // 인자가 몇개 들어갈 지 모르는 상황!
+
+                /* 
+                    function sum(a, b, c, d, e, f, g) {
+                        let result = 0;
+                        if (a) result += a;
+                        if (b) result =+ b;
+                        ...
+
+                        return result;
+                    }
+
+                    이렇게 쓰면 복잡하고 작성한것에서 1개 이상의 인자가 더 들어가게 되면
+                    값이 안더해진다
+                */     
+
+        
+            // reduce 를 쓰면 편해진다 
+                // array.reduce(콜백함수, 기본값); 이렇게
+                // ...rest 는 배열로 인자들을 받아오기 때문!
+                
+                function sum(...rest) {
+                    return rest.reduce((acc, current) => acc + curren, 0);
+                }
+
+                console.log(sum(1, 2, 3, 4, 5, 6, 7, 8));
