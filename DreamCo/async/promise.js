@@ -3,13 +3,15 @@
 // 1. State 상태 
 // 2. Producer & consumer 의 차이점 
 
-// asynchronous : 동시에 발생하지 않는 
+// asynchronous : 동시에 발생하지 않는 , 비동기적 
 
 // Promsie is a JavaScript object for asynchronous operation.
 // State : pending 대기중 -> fulfilled 성공 or rejected 실패 
 // Producer vs Consumer
 
 // Promise 안에는 꼭 return 이 아닌 resolve/reject 를 통해 값을 전달해줘야한다 
+
+// new Promise((resolve, reject) => {구현});
 
 // 프로미스 정리
     // 내가 언제 유저의 데이터를 받아 올지는 모르겠지만
