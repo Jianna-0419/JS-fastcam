@@ -3,7 +3,7 @@ const GAME_TIME = 3;
         // 같은 숫자를 반복해서 사용하는 거보다 설정해서 쓰는게 낫다
         // 변경도 쉬움
 let score = 0;
-let time = 5;
+let time = 3;
 let isPlaying = false;
 let timeInterval;
 let checkInterval;
@@ -18,6 +18,7 @@ const button = document.querySelector(".button");
 init();
 
 function init() {
+    buttonChange('게임 로딩중...');
     getWords();
     wordInput.addEventListener("input", checkMatch);
 }
@@ -28,7 +29,7 @@ function run() {
         return;     // 게임중일 때 눌러도 초기화 되지 않게!
     }
     isPlaying = true;
-    time = 5;       // 시작시, 시간 초기화 
+    time = GAME_TIME;       // 시작시, 시간 초기화 
     wordInput.focus();
     scoreDisplay.innerText = 0;
     timeInterval = setInterval(countDown, 1000);
@@ -39,8 +40,21 @@ function run() {
 
 // 단어 불러오기 
 function getWords() {
-    words = ['Hello', 'Banana', 'Apple', 'Cherry'];
-    buttonChange('게임 시작');
+    axios.get('https://random-words-api.herokuapp.com/w?n=10')
+        .then(function (response) {
+            // handle success
+            response.data.forEach((word) => {
+                if (word.length < 10) {
+                    words.push(word);
+                }
+            })
+            buttonChange('게임 시작');
+            // console.log(words);
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        });
 }
     
 // 단어 일치 체크 
